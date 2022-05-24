@@ -1,0 +1,69 @@
+<!Doctype html>
+<html>
+<head>
+    <title>L3_CSS_Combinators _Demo</title>
+<!-- 
+Style the following html document with CSS for each of the elements
+    Add a blue colour to the <em> element
+    Identify a descendant and apply a descendant combinator to set the colour to red.
+    Identify a direct child relationship and apply a lime green colour.
+    Identify an adjacent-sibling relationship and apply a purple colour
+    Identify all siblings and apply a background-colour of grey
+    BONUS: Research pseduo-class and apply a hover effect on <p class="hover">
+-->
+    <style type="text/css">
+        em {
+            color: blue;
+        }
+        p em {
+            color: red;
+        }
+        body > footer {
+            color: limegreen;
+        }
+        blockquote + p {
+            color: purple;
+        }
+        h1 ~ h2 {
+            color: grey
+        }
+        p.hover:hover {
+            color: hotpink;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="heading" class="font"> A <em>heading</em></h1>
+    <p class="font">A paragraph <em>with emphasis</em></p>
+
+    <header>
+        <h1>Header</h1>
+    </header>
+
+    <article>
+        <h1>Article</h1>
+        <p>paragraph 1</p>
+        <p>paragraph 2</p>
+        <footer>Article footer</footer>
+    </article>
+
+    <footer>Body footer</footer>
+
+    <p class="hover">hover me</p>
+
+    <article>
+        <h1>Article</h1>
+        <p>Paragraph 1</p>
+        <p>Paragraph 2</p>
+        <blockquote>Quote</blockquote>
+        <p>Paragraph 3</p>
+        <h2>Header 2</h2>
+        <p>Paragraph 4</p>
+        <h2>Header 3</h2>
+        <p>Paragraph 5</p>
+        <footer>Article footer</footer>
+    </article>
+
+    <footer>Body footer</footer>
+</body>
+</html>
