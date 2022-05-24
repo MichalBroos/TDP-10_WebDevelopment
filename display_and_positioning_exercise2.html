@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Create a HTML document that contains an image with some text positioned
+        over the bottom right of the image. -->
+        <style>
+            .container {
+            position: relative;
+            }
+            .bottomright {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 18px;
+            }
+            img {
+            width: 100%;
+            height: auto;
+            opacity: 0.3;
+            border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>I want you to meet my friend</h2>
+        <p>My name is Wiki</p>
+        <div class="container">
+            <img src="https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2.png" alt="Wiki logo">
+            <div class="bottomright">Can we be friends?</div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1.hidden{
+            display: none;
+        }
+         h1.vis {
+            visibility: hidden;
+        }
+        div.scroll {
+            background-color: #00FFFF;
+            width: 100px;
+            height: 100px;
+            overflow: scroll;
+        }
+        div.hidden {
+            background-color: #00FF00;
+            width: 100px;
+            height: 100px;
+            overflow: hidden;
+        }
+        div.ex1 {
+            width: 500px;
+            margin: auto;
+            border: 3px solid #8AC007;
+        }
+        div.ex2 {
+            max-width: 500px;
+            margin: auto;
+            border: 3px solid #8AC007;
+        }
+        p.stay {
+            position:fixed;
+            bottom: 0;
+            background-color: purple;
+            border: 2px solid #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>This is a visible heading</h1>
+    <h1 class="hidden">This is a hidden heading</h1>
+    <p>Notice that the h1 element with display: none; does not take up any space.</p>
+
+    <h1>This is a visible heading</h1>
+    <h1 class="vis">This is a hidden heading</h1>
+    <p>Notice that the hidden heading still takes up space.</p>
+
+    <p>The overflow property specifies what to do if the 
+    content of an element exceeds the size of the element's box.</p>
+
+    <p>overflow:scroll</p>
+    <div class="scroll">You can use the overflow property when you want to have better control of the layout. The default value is visible.</div>
+
+    <p>overflow:hidden</p>
+    <div class="hidden">You can use the overflow property when you want to have better control of the layout. The default value is visible.</div>
+
+    <div class="ex1">This div element has width: 500px;</div>
+    <br>
+
+    <div class="ex2">This div element has max-width: 500px;</div>
+
+    <p class="stay">
+        <strong>Tip:</strong> Drag the browser window to smaller than 500px wide, to see the difference between
+        the two divs!
+    </p>
+
+</body>
+</html>
