@@ -46,3 +46,20 @@ typeof null === 'object';
 // A fix was proposed for ECMAScript (via an opt-in), but was rejected.
 // It would have resulted in typeof null === 'null'.
 
+// CSS
+console.time("CSS Timer");
+let myTxt = "This could be useful!";
+console.log("this is a %c a message with some CSS. " + myTxt,
+            "color: yellow; font-style: italic; background-color: blue; padding: 2px");
+console.log("This is now %c the end of the exercise.", "color: orange; font-family: fantasy; " +
+            "font-style: bold; background-color: black; padding: 10px");
+console.timeEnd("CSS Timer");
+
+// Template literals
+let myCar = "Audi";
+let myModel = "TT";
+console.log(`my fav car is ${myCar} and the model is ${myModel}`);
+
+// not strict vs strict?
+let userID = null;
+console.log(userID == undefined, userID === undefined); //returns true, false
