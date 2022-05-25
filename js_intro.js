@@ -60,6 +60,12 @@ let myCar = "Audi";
 let myModel = "TT";
 console.log(`my fav car is ${myCar} and the model is ${myModel}`);
 
+let totalMoney = 4000;
+let moneyPaidSoFar = 2348;
+let totalLeftToPay = totalMoney - moneyPaidSoFar;
+console.log(`Total bill is £${totalMoney}, remaining to pay is £${totalLeftToPay}`);
+console.log(`Total bill is £${totalMoney}, remaining to pay is £${totalMoney - moneyPaidSoFar}`);
+
 // not strict vs strict?
 let userID = null;
 console.log(userID == undefined, userID === undefined); //returns true, false
