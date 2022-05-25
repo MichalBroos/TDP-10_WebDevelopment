@@ -174,3 +174,18 @@ for (let i = 0; i < myArray.length; i++) {
 // 2
 // 3
 */
+
+// Iteration
+for (let i = 195; i <= 200; i++) {
+    console.log(`i = ${i}`);
+}
+
+let a = 196;
+while (a <= 200) {
+    console.log(a % 2 == 0 ? `${a} even` : `${a} odd`);
+    a++;
+}
+
+// Other
+let now = new Date();
+console.log(now.getDay());
