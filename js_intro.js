@@ -69,3 +69,108 @@ console.log(`Total bill is £${totalMoney}, remaining to pay is £${totalMoney -
 // not strict vs strict?
 let userID = null;
 console.log(userID == undefined, userID === undefined); //returns true, false
+
+// various stuff from Edge console
+/*
+let i = 4;
+if (i = 5) {
+    console.log(true);
+}
+// true because = and not == or ===
+Boolean(null)
+// false
+Boolean(undefined)
+// false
+Boolean(0)
+// false
+Boolean("")
+// false
+Boolean(false)
+// false
+Boolean(NaN)
+// false
+Boolean([])
+// true
+Boolean("false")
+// true
+Boolean("0")
+// true
+Boolean(false)
+// false
+let classRoom = ["","","",""];
+classRoom[2]
+// ''
+for(let person in classRoom) {
+    console.log(person);
+}
+// 0
+// 1
+// 2
+// 3
+let classRoom = [1,2,3,4];
+for (let person in classRoom) {
+    console.log(person);
+}
+// 0
+// 1
+// 2
+// 3
+for (let person of classRoom) {
+    console.log(person);
+}
+// 1
+// 2
+// 3
+// 4
+let d = ["apple","strawberries","banana", "grapes", "pear"];
+console.log(d.sort()); // ["apple", "banana", "grapes", "pear", "strawberries"]
+// (5) ['apple', 'banana', 'grapes', 'pear', 'strawberries']
+console.log(d.reverse());//["strawberries", "pear", "grapes", "banana", "apple"]
+// (5) ['strawberries', 'pear', 'grapes', 'banana', 'apple']
+console.log(d.join());
+// strawberries,pear,grapes,banana,apple
+console.log(typeof d.join());
+// string
+d
+// (5) ['strawberries', 'pear', 'grapes', 'banana', 'apple']
+d.pop();
+// 'apple'
+d
+// (4) ['strawberries', 'pear', 'grapes', 'banana']
+d.push("apple");
+// 5
+d
+// (5) ['strawberries', 'pear', 'grapes', 'banana', 'apple']
+d.shift();
+// 'strawberries'
+d
+// (4) ['pear', 'grapes', 'banana', 'apple']
+JSON.parse('{"name":"Adrian"}');
+{name: 'Adrian'}
+myArray = ["hello", "everyone"];
+// (2) ['hello', 'everyone']
+myArray.length;
+// 2
+myArray.push(1, 2, 3)
+// 5
+myArray
+// (5) ['hello', 'everyone', 1, 2, 3]
+myArray.length;
+// 5
+myArray.shift();
+// 'hello'
+for (let el of myArray) {
+    console.log(el);
+}
+// everyone
+// 1
+// 2
+// 3
+for (let i = 0; i < myArray.length; i++) {
+    console.log(myArray[i]);
+}
+// everyone
+// 1
+// 2
+// 3
+*/
