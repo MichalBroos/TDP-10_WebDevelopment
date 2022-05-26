@@ -237,3 +237,76 @@ console.log("original 'slice':", fore, mid); // name matching, not order slicing
 // MDN-Destructuring assignment-Object destructuring-Assigning to new variable names
 let {fore: fore2, mid: mid2} = p;
 console.log("unpacked from object:", fore2, mid2);
+
+// JavaScript Exercise Book
+// Conditionals 1
+let person = {
+    age: 33
+}
+if (person.age >= 20 && person.age < 40) {
+    console.log("Between");
+} else {
+    console.log("Not between");
+}
+// Iteration 1
+for (let i = 1; i <= 1; i++) {
+    console.log(i);
+}
+// Iteration 2
+for (let i = 0; i <= 1; i++) {
+    if (i % 2 == 0) {
+        console.log("Even");
+    }
+}
+// Iteration 3
+function iteration3WithMod(upTo, wordForDivBy3, wordForDivBy5) {
+    for (let i = 1; i < upTo; i++) {
+        let divisibleBy3 = i % 3 === 0;
+        let divisibleBy5 = i % 5 === 0;
+
+        if (divisibleBy3 && divisibleBy5) {
+            console.log(`${i}: ${wordForDivBy3} and ${wordForDivBy5}`);
+        } else if (divisibleBy3) {
+            console.log(`${i}: ${wordForDivBy3}`);
+        } else if (divisibleBy5) {
+            console.log(`${i}: ${wordForDivBy5}`);
+        } else {
+            console.log(`${i}: Neither ${wordForDivBy3}, nor ${wordForDivBy5}`);
+        }
+    }
+}
+iteration3WithMod(16, "divisible by 3", "divisible by 5");
+// write a version without using mod, by manipulating strings and using divisibility rules
+
+// Iteration 4
+function iteration4(n) {
+    console.log("-".repeat(10));
+    let iterationCount = 0;
+    const DIV_BY_3 = "divided by 3";
+    const ADDED_1 = "added 1";
+    const SUBED_1 = "subtracted 1";
+
+    while (n !== 1) {
+        console.log(`Iteration ${iterationCount}, n = ${n}`);
+
+        if (n % 3 === 0) {
+            n /= 3;
+            console.log(DIV_BY_3);
+        } else if ((n + 1) % 3 === 0) {
+            n++;
+            console.log(ADDED_1);
+            n /= 3;
+            console.log(DIV_BY_3);
+        } else {
+            n--;
+            console.log(SUBED_1);
+            n /= 3;
+            console.log(DIV_BY_3);
+        }
+
+        iterationCount++;
+        console.log("-".repeat(10));
+    }
+    console.log(`n = ${n}, total number of iterations: ${iterationCount}`);
+}
+iteration4(10);
