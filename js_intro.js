@@ -1,3 +1,4 @@
+"use strict"
 let x = 6;
 console.log(x);
 
@@ -206,6 +207,7 @@ function resetArray() {
 
 // spread operator
 resetArray();
+let rest; // required when using strict
 [e1, e2, e3,...rest] = myArray;
 console.log(e1, e2, e3, rest);
 
