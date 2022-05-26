@@ -189,3 +189,49 @@ while (a <= 200) {
 // Other
 let now = new Date();
 console.log(now.getDay());
+
+// Destructuring
+let myArray = [1,2,3];
+let [e1, e2, e3] = myArray; // correct
+// let a1, a2, a3 = myArray; // would assign entire array to a3 only, so a1 and a2 = undefined
+console.log(e1, e2, e3);
+
+// helper
+function resetArray() {
+    myArray = [];
+    for (let i = 10; i <= 20; i++) {
+        myArray.push(i);
+    }
+}
+
+// spread operator
+resetArray();
+[e1, e2, e3,...rest] = myArray;
+console.log(e1, e2, e3, rest);
+
+// skipping values
+resetArray();
+[e1, , e3,...rest] = myArray;
+console.log(e1, e3, rest);
+
+// object destructuring
+let p = {
+    fore: "Forename",
+    mid: "Middle",
+    sur: "Surname"
+};
+let {n1, n2} = p;
+/*
+undefined x2 because above does not assign first two key:value pairs to n1 and n2 as you thought
+originally (in fact objects = unordered so what would be the first two pairs anyway?!), but rather
+like taking a slice of p and that slice containing what is already in p, hence n1 and n2 are
+undefined because they are undefined in p, you need to take the slice of the existing fields
+as seen on the next line
+*/
+let {fore, mid} = p;
+console.log(n1, n2);
+console.log("original 'slice':", fore, mid);
+// if you want to unpack from an object and assign to variables you do this as shown on 
+// MDN-Destructuring assignment-Object destructuring-Assigning to new variable names
+let {fore: fore2, mid: mid2} = p;
+console.log("unpacked from object:", fore2, mid2);
