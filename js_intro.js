@@ -227,10 +227,12 @@ originally (in fact objects = unordered so what would be the first two pairs any
 like taking a slice of p and that slice containing what is already in p, hence n1 and n2 are
 undefined because they are undefined in p, you need to take the slice of the existing fields
 as seen on the next line
+actually, it does assign, it's just the default syntax, i.e. not specifying which keys to assign,
+looks for the same names, in other words assignment is based on matching names, not order
 */
 let {fore, mid} = p;
 console.log(n1, n2);
-console.log("original 'slice':", fore, mid);
+console.log("original 'slice':", fore, mid); // name matching, not order slicing!
 // if you want to unpack from an object and assign to variables you do this as shown on 
 // MDN-Destructuring assignment-Object destructuring-Assigning to new variable names
 let {fore: fore2, mid: mid2} = p;
