@@ -384,6 +384,9 @@ let dom1ExerciseBook = () => {
     let changeParaButton = addButton("Change most recent");
     let deleteParaButton = addButton("Delete most recent");
 
+    // unsafe because "the W3C model does not state which event handler is fired first and that can not be assumed"?
+    // solution: first two events combined and using para${nextParaId++},
+    // last two combined and using para${nextParaId != 0 ? --nextParaId : -1} -1 being DNE
     createParaButton.addEventListener("click", () => addParagraph(`para${nextParaId}`, textBox.id));
     createParaButton.addEventListener("click", () => nextParaId++);
     changeParaButton.addEventListener("click", () => changeParagraphText(`para${nextParaId - 1}`, textBox.id));
