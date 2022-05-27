@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <title>content</title>
+    <style type="text/css">
+      .d1 {
+        background-color: green;
+        position: relative;
+        width: 150px;
+        height: 150px;
+        text-align: center;
+        cursor: pointer;
+      }
+
+      .d2 {
+        background-color: blue;
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        width: 100px;
+        height: 100px;
+      }
+
+      .d3 {
+        background-color: red;
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="d1">
+      1
+      <div class="d2">
+        2
+        <div class="d3" id="d3">
+          3
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      let divs = document.getElementsByTagName("div");
+
+      for (let i = 0; i < divs.length; i++) {
+        divs[i].addEventListener(
+          "click",
+          function (e) {
+            this.style.backgroundColor = "yellow";
+            alert(
+              "target = " + e.target.className + ", this=" + this.className
+            );
+            this.style.backgroundColor = "";
+            // e.stopPropagation();    //stop the click event from bubbling to parent elements:
+          },false); // set to 'true' to see capturing; chrome not working? - try another browser.
+      }
+    </script>
+  </body>
+</html>
