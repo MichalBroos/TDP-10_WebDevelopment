@@ -318,6 +318,8 @@ let domExercise1 = () => {
     let h1Ele = document.createElement("h1");
     h1Ele.innerText = "Heading 1";
     document.body.appendChild(h1Ele);
+
+    return "success";
 }
 // solution by QA - same HTML despite creating another node
 let domExercise1QA = () => {
@@ -326,5 +328,66 @@ let domExercise1QA = () => {
     heading.appendChild(heading_text);
     document.body.appendChild(heading);
 }
-domExercise1();
-domExercise1QA();
+// domExercise1();
+// domExercise1QA();
+
+// JavaScript Exercise Book
+// DOM 1
+let addButton = (textBeforePara) => {
+    let button = document.createElement("button");
+    button.innerText = `${textBeforePara} paragraph`;
+    button.style.display = "block"
+    document.body.appendChild(button);
+    return button;
+}
+
+let addParagraph = (paraId, paraTextId, defaultText = "New paragraph") => {
+    let para = document.createElement("p");
+    let paraText = document.getElementById(paraTextId);
+    para.innerText = paraText.value ? paraText.value : defaultText;
+    para.id = paraId;
+    document.body.appendChild(para);
+}
+
+let changeParagraphText = (paraId, paraTextId) => {
+    let para = document.getElementById(paraId);
+    if (para) {
+        let paraText = document.getElementById(paraTextId);
+        para.innerText = paraText.value ? paraText.value : "<blank>";
+    } else {
+        alert("Create a paragraph first")
+    }
+}
+
+let deleteParagraph = (paraId) => {
+    let para = document.getElementById(paraId);
+    if (para) {
+        para.remove();
+    } else {
+        alert("No paragraphs exist");
+    }
+}
+
+let dom1ExerciseBook = () => {
+    let nextParaId = 0;
+    let createParaButton = addButton("Create new");
+    
+    let textBox = document.createElement("input");
+    let labelTextBox = document.createElement("label");
+    textBox.name = "paraText"
+    textBox.id = textBox.name
+    labelTextBox.innerText = "Paragraph text:";
+    labelTextBox.setAttribute("for", textBox.name); // example of setter
+    document.body.appendChild(labelTextBox);
+    document.body.appendChild(textBox);
+    
+    let changeParaButton = addButton("Change most recent");
+    let deleteParaButton = addButton("Delete most recent");
+
+    createParaButton.addEventListener("click", () => addParagraph(`para${nextParaId}`, textBox.id));
+    createParaButton.addEventListener("click", () => nextParaId++);
+    changeParaButton.addEventListener("click", () => changeParagraphText(`para${nextParaId - 1}`, textBox.id));
+    deleteParaButton.addEventListener("click", () => deleteParagraph(`para${nextParaId - 1}`)); // or --nextParaId
+    deleteParaButton.addEventListener("click", () => nextParaId != 0 ? nextParaId-- : null);
+}
+dom1ExerciseBook();
