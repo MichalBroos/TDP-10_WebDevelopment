@@ -312,3 +312,19 @@ function iteration4(n) {
     console.log(`n = ${n}, total number of iterations: ${iterationCount}`);
 }
 iteration4(10);
+
+// DOM Manipulation
+let domExercise1 = () => {
+    let h1Ele = document.createElement("h1");
+    h1Ele.innerText = "Heading 1";
+    document.body.appendChild(h1Ele);
+}
+// solution by QA - same HTML despite creating another node
+let domExercise1QA = () => {
+    const heading = document.createElement("h1");
+    const heading_text = document.createTextNode("Big head!");
+    heading.appendChild(heading_text);
+    document.body.appendChild(heading);
+}
+domExercise1();
+domExercise1QA();
