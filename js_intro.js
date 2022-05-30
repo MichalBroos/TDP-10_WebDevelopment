@@ -435,4 +435,113 @@ let counterExercise = () => {
     addCounterButton("+5", numInput.id);
 }
 // add log history extension
-counterExercise();
+// counterExercise();
+
+// Calculator Exercise
+let calculatorExercise = () => {
+    let operatorPressed = false;
+    let operand1 = 0;
+    let operand2 = 0;
+    let newOperand = 0;
+    let finalResultValue = 0;
+
+    let result = document.createElement("input");
+    result.name = "result";
+    result.id = "result";
+    result.type = "text";
+    result.value = 0;
+    result.readOnly = true;
+    document.body.appendChild(result);
+
+    
+    const otherButtonsText = [["+", "-"], ["*", "/"], ["0", "="]]
+    for (let i = 0; i <= 2; i++) {
+        let rowDiv = document.createElement("div");
+        rowDiv.id = "row" + i;
+        document.body.appendChild(rowDiv);
+
+        for (let j = 1; j <= 3; j++) {
+            let numButton = document.createElement("button");
+            numButton.innerText = j + i * 3;
+            numButton.id = numButton.innerText
+            rowDiv.appendChild(numButton);
+
+            numButton.addEventListener("click", function(event) {
+                console.log(event.target);
+                // if used event, it would be event.target.innerText, instead of numButton.innerText
+                let newValue = result.value === "0" ?  numButton.innerText : result.value +  numButton.innerText;
+                result.value = newValue;
+                console.log("newValue", newValue);
+                
+                // if (!finalResultValue) {
+                //     finalResultValue = Number.parseInt(newValue);
+                // }
+                // console.log("f", finalResultValue);
+                // console.log("n", newValue);
+
+                // newOperand = Number.parseInt(newValue);
+                // console.log(newOperand);
+                // if (!finalResultValue) {
+                //     finalResultValue = Number.parseInt(newValue);
+                // } else {
+                //     newOperand = Number.parseInt(newValue);
+                // }
+
+                // if (!operatorPressed) {
+                //     operand1 = Number.parseInt(newValue);
+                //     console.log(operand1);
+                // } else {
+                //     operand2 = Number.parseInt(newValue);
+                //     console.log(operand2);
+                // }
+                
+            });
+            // numButton.addEventListener("click", (event) => f);
+        }
+
+        for (let buttonText of otherButtonsText[i]) {
+            let otherButton = document.createElement("button");
+            otherButton.innerText = buttonText;
+            otherButton.id = otherButton.innerText;
+            rowDiv.appendChild(otherButton);
+
+            otherButton.addEventListener("click", function(event) {
+                const buttonText = otherButton.innerText;
+                if (buttonText !== "=") {
+                    // if (!finalResultValue) {
+                    //     finalResultValue = Number.parseInt(result.value);
+                    // }
+                    let prevValue = result.value;
+                    // result.value = 0;
+                    console.log("f", finalResultValue);
+                    // newOperand = Number.parseInt(result.value);
+                    if (buttonText === "+" || buttonText === "-") {
+                        finalResultValue += Number.parseInt(prevValue);
+                    }
+                    console.log("f", finalResultValue);
+                }
+
+
+                // if (buttonText !== "=") {
+
+                //     result.value = 0;
+                // } else {
+                //     console.log(finalResultValue);
+                // }
+
+                // if (buttonText === "+" || buttonText === "-") {
+
+                //     finalResultValue += Number.parseInt(result.value);
+                // } else if (buttonText === "*" || buttonText === "/") {
+                //     // *
+                // } else if (buttonText === "=") {
+                //     console.log(finalResultValue);
+                // }
+            });
+        }
+    }
+}
+// let f = (event) => {
+
+// }
+calculatorExercise();
