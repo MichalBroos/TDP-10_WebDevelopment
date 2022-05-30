@@ -444,6 +444,7 @@ let calculatorExercise = () => {
     let operand2 = 0;
     let newOperand = 0;
     let finalResultValue = 0;
+    let op = null;
 
     let result = document.createElement("input");
     result.name = "result";
@@ -465,6 +466,19 @@ let calculatorExercise = () => {
             numButton.innerText = j + i * 3;
             numButton.id = numButton.innerText
             rowDiv.appendChild(numButton);
+
+            // example of flawed logic because condition isn't checked when calling but when adding the listener,
+            // hence else would never be called
+            numButton.addEventListener("click", !op ? () => {
+                // no op
+                console.log("op from no op", op);
+                let newValue = result.value === "0" ?  numButton.innerText : result.value +  numButton.innerText;
+                result.value = newValue;
+                console.log("newValue", newValue);
+            } : () => {
+                // op
+                console.log("op from op");
+            });
 
             numButton.addEventListener("click", function(event) {
                 console.log(event.target);
