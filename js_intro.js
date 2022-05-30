@@ -393,4 +393,34 @@ let dom1ExerciseBook = () => {
     deleteParaButton.addEventListener("click", () => deleteParagraph(`para${nextParaId - 1}`)); // or --nextParaId
     deleteParaButton.addEventListener("click", () => nextParaId != 0 ? nextParaId-- : null);
 }
-dom1ExerciseBook();
+// dom1ExerciseBook();
+
+// Counter Exercise
+let addCounterButton = (text, numInputId) => {
+    let button = document.createElement("button");
+    let n = Number.parseInt(text);
+    button.innerText = n == 0 ? "R" : text;
+    document.body.appendChild(button);
+    button.addEventListener("click", () => updateCounter(n, numInputId));
+}
+
+let updateCounter = (numToAdd, numInputId) => {
+    let numInput = document.querySelector(`#${numInputId}`);
+    numInput.value = numToAdd ? Number.parseInt(numInput.value) + numToAdd : 0;
+}
+
+let counterExercise = () => {
+    let numInput = document.createElement("input");
+    numInput.name = "result";
+    numInput.id = "result";
+    numInput.type = "number";
+    numInput.value = 0;
+    document.body.appendChild(numInput);
+
+    addCounterButton("-5", numInput.id);
+    addCounterButton("-1", numInput.id);
+    addCounterButton("0", numInput.id);
+    addCounterButton("+1", numInput.id);
+    addCounterButton("+5", numInput.id);
+}
+counterExercise();
