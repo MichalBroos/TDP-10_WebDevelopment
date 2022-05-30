@@ -438,6 +438,97 @@ let counterExercise = () => {
 // counterExercise();
 
 // Calculator Exercise
+function createInputs(inputName) {
+    let inputBox = document.createElement("input");
+    inputBox.name = inputName;
+    inputBox.id = inputName;
+    inputBox.type = "text";
+    inputBox.readOnly = true;
+    document.body.appendChild(inputBox);
+    return inputBox;
+}
+
+let calculatorExerciseV2 = () => {
+    let tracker = createInputs("tracker");
+    let result = createInputs("result");
+    result.value = 0;
+    let operatorPressed = false;
+    let numberPressed = false;
+
+    const otherButtonsText = [["+", "-"], ["*", "/"], ["0", "="]];
+    for (let i = 0; i <= 2; i++) {
+        let rowDiv = document.createElement("div");
+        rowDiv.id = "row" + i;
+        document.body.appendChild(rowDiv);
+
+        for (let j = 1; j <= 3; j++) {
+            let numButton = document.createElement("button");
+            numButton.innerText = j + i * 3;
+            numButton.id = numButton.innerText
+            rowDiv.appendChild(numButton);
+
+            numButton.addEventListener("click", () => {
+                if (operatorPressed) {
+                    result.value = 0;
+                    operatorPressed = false;
+                }
+                result.value = result.value === "0" ? numButton.innerText : result.value + numButton.innerText;
+                numberPressed = true;
+            });
+        }
+    
+        for (let buttonText of otherButtonsText[i]) {
+            let otherButton = document.createElement("button");
+            otherButton.innerText = buttonText;
+            otherButton.id = otherButton.innerText;
+            rowDiv.appendChild(otherButton);
+
+            otherButton.addEventListener("click", () => {
+                if (otherButton.innerText === "0") {
+                    // special otherButton which is not an operand
+                    result.value = !numberPressed ? 0 : result.value + 0;
+                    numberPressed = true;
+                } else {
+                    operatorPressed = true;
+                    console.log(tracker.value);
+                    if (!tracker.value) {
+                        tracker.value = otherButton.innerText !== "=" ? `${result.value} ${otherButton.innerText}` : "";
+                    } else if (!numberPressed) {
+                        // pressing a sign followed by another sign is handled by this condition
+                        // just update the sign using regex
+                        tracker.value = tracker.value.replace(/.$/, otherButton.innerText);
+                    } else {
+                        let trackerSplit = tracker.value.split(" ");
+                        let op1 = Number.parseInt(trackerSplit[0]);
+                        let op = trackerSplit[1];
+                        let op2 = Number.parseInt(result.value);
+                        let op2Signed = result.value < 0 ? result.value : `${op}${result.value}`;
+                        console.log(op1, op2Signed);
+                        console.log(op1, op2Signed, op2);
+    
+                        if (op === "+" || op === "-") {
+                            result.value = op1 + Number.parseInt(op2Signed);
+                        } else if (op === "*") {
+                            result.value = op1 * Number.parseInt(op2Signed.slice(1)); // sign removed, could use op2 instead
+                        } else if (op === "/") {
+                            result.value = op1 / Number.parseInt(op2Signed.slice(1)); // sign removed, could use op2 instead
+                        }
+    
+                        if (otherButton.innerText === "=") {
+                            // tracker.value = `${op1} ${op} ${op2} = ${result.value}`; // Windows-like
+                            tracker.value = "";
+                        } else {
+                            tracker.value = `${result.value} ${otherButton.innerText}`;
+                        }
+                    }
+                    numberPressed = false;
+                }
+            });
+        }
+    }
+}
+calculatorExerciseV2();
+
 let calculatorExercise = () => {
     let operatorPressed = false;
     let operand1 = 0;
