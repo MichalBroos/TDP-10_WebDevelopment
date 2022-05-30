@@ -401,12 +401,23 @@ let addCounterButton = (text, numInputId) => {
     let n = Number.parseInt(text);
     button.innerText = n == 0 ? "R" : text;
     document.body.appendChild(button);
-    button.addEventListener("click", () => updateCounter(n, numInputId));
+    // example of passing the event which can then be accessed in the listener
+    button.addEventListener("click", (e) => updateCounter(e, n, numInputId));
 }
 
-let updateCounter = (numToAdd, numInputId) => {
+let updateCounter = (e, numToAdd, numInputId) => {
     let numInput = document.querySelector(`#${numInputId}`);
     numInput.value = numToAdd ? Number.parseInt(numInput.value) + numToAdd : 0;
+
+    // accessing the passed event
+    /* https://stackoverflow.com/a/64585152
+    In other words, "event" should really be passed as an argument to a JS event handler.
+    You shouldn't be using the global object; you shouldn't NEED to use the global object.
+    */
+    console.log(event);
+    console.log(e);
+    console.log(e.target.value); // button has no value, innerText
+    console.log(e.target.innerText);
 }
 
 let counterExercise = () => {
@@ -423,4 +434,5 @@ let counterExercise = () => {
     addCounterButton("+1", numInput.id);
     addCounterButton("+5", numInput.id);
 }
+// add log history extension
 counterExercise();
