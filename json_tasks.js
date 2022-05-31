@@ -78,15 +78,24 @@ fetch("https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/kings.jso
             let searchText = searchBox.value.toLowerCase();
             for (let king of data) {
                 for (let key in king) {
-                    if (king[key].toLowerCase().includes(searchText)) {
-                        resultsCount++;
+                    if (key !== "yrs") {
+                        if (king[key].toLowerCase().includes(searchText)) {
+                            resultsCount++;
 
-                        let result = document.createElement("p");
-                        result.innerText = stringifyKing(king);
-                        resultsDiv.appendChild(result);
+                            let result = document.createElement("p");
+                            result.innerText = stringifyKing(king);
+                            resultsDiv.appendChild(result);
 
-                        // do not process one king multiple times
-                        break;
+                            // do not process one king multiple times
+                            break;
+                        }
+                    } else {
+                        // searching by years
+                        const yearsSplit = king[key].split("-");
+                        const year1 = Number.parseInt(yearsSplit[0]);
+                        const year2 = yearsSplit // continue here
+                        console.log(yearsSplit);
+
                     }
                     // for year - split and check between [0] and [2]
                 }
