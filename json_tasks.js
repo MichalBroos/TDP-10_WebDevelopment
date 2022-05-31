@@ -1,5 +1,6 @@
 "use strict"
-// JSON 1
+// JSON 1 (no error checking)
+let task1 = () => {
 fetch("https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/example.json")
     .then(response => response.json())
     .then(data => {
@@ -40,3 +41,60 @@ fetch("https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/example.j
             memberInfoUl.appendChild(createLi(`Powers: ${member.powers.join(", ")}`));
         }
     });
+}
+// task1();
+
+// JSON 2
+let task2 = () => {
+fetch("https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/kings.json") // array of objects
+    .then(response => response.json())
+    .then(data => {
+        let h1 = document.createElement("h1");
+        h1.innerText = "King search";
+        document.body.appendChild(h1);
+        
+        let searchBox = document.createElement("input");
+        searchBox.type = "text";
+        document.body.appendChild(searchBox);
+        // add event listener for Enter
+        
+        let searchButton = document.createElement("button");
+        searchButton.innerText = "Search";
+        document.body.appendChild(searchButton);
+
+        let resultsDiv = document.createElement("div");
+        document.body.appendChild(resultsDiv);
+
+        searchButton.addEventListener("click", () => {
+            function printKing(king) {
+                return `Name: ${king.nm}\nCountry: ${king.cty}\nHouse: ${king.hse}\nYears: ${king.yrs}`;
+            }
+
+            // clear previous results
+            resultsDiv.innerHTML = "";
+            let resultsCount = 0;
+
+            let searchText = searchBox.value.toLowerCase();
+            for (let king of data) {
+                for (let key in king) {
+                    if (king[key].toLowerCase().includes(searchText)) {
+                        // pretty print king
+                        resultsCount++;
+
+                        let results = document.createElement("p");
+                        results.innerText = printKing(king);//JSON.stringify(king);
+                        resultsDiv.appendChild(results);
+
+                        break;
+                    }
+                    // for year - split and check [0] and [2]
+                    // add # of results counter
+                }
+            }
+            let numOfResults = document.createElement("p");
+            numOfResults.innerText = `Total number of results: ${resultsCount}`;
+            resultsDiv.prepend(numOfResults);
+        });
+    });
+}
+task2();
