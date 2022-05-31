@@ -7,37 +7,36 @@ fetch("https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/example.j
         h1.innerText = `Welcome to the website of ${data.squadName}!`;
         document.body.appendChild(h1);
 
-        let p = document.createElement("p");
-        p.innerText = `We were formed in ${data.formed} in ${data.homeTown} and we are currently
-                        ${data.active ? "" : "not"} protecting the citizens. You can find us at ${data.secretBase}.`;
-        document.body.appendChild(p);
+        function addP(text) {
+            let p = document.createElement("p");
+            p.innerText = text;
+            document.body.appendChild(p);
+        }
+        
+        addP(`We were formed in ${data.formed} in ${data.homeTown} and we are currently 
+            ${data.active ? "" : "not"} protecting the citizens. You can find us at ${data.secretBase}.`);
+        addP("Here are our current members:");
 
-        let p2 = document.createElement("p");
-        p2.innerText = `Here are our current members:`;
-        document.body.appendChild(p2);
+        let membersUl = document.createElement("ul");
+        membersUl.id = "members";
+        document.body.appendChild(membersUl);
 
-        let membersList = document.createElement("ul");
-        membersList.id = "members";
-        document.body.appendChild(membersList);
+        function createLi(text) {
+            const li = document.createElement("li");
+            li.innerText = text;
+            return li;
+        }
+
         for (let member of data.members) {
-            let memberLi = document.createElement("li");
-            memberLi.innerText = member.name;
+            let memberLi = createLi(member.name);
             memberLi.id = `${member.name}`.replaceAll(" ", "");
+            // using Id just as an example, simply could use membersUl.append...
             document.getElementById("members").appendChild(memberLi);
 
-            // for (let property in member) {
-            //     console.log(member[property]);
-            // }
-
-            function createLi(text) {
-                const li = document.createElement("li");
-                li.innerText = text;
-                return li;
-            }
-            let memberInfo = document.createElement("ul");
-            memberLi.appendChild(memberInfo);
-            memberInfo.appendChild(createLi(`Age: ${member.age}`));
-            memberInfo.appendChild(createLi(`Age: ${member.age}`));
-
+            let memberInfoUl = document.createElement("ul");
+            memberLi.appendChild(memberInfoUl);
+            memberInfoUl.appendChild(createLi(`Age: ${member.age}`));
+            memberInfoUl.appendChild(createLi(`Name: ${member.secretIdentity}`));
+            memberInfoUl.appendChild(createLi(`Powers: ${member.powers.join(", ")}`));
         }
     });
