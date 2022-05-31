@@ -1,5 +1,5 @@
 "use strict"
-// JSON 1 (no error checking)
+// JSON 1 (no response error checking)
 let task1 = () => {
 fetch("https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/example.json")
     .then(response => response.json())
@@ -44,7 +44,7 @@ fetch("https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/example.j
 }
 // task1();
 
-// JSON 2
+// JSON 2 (no response error checking)
 let task2 = () => {
 fetch("https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/kings.json") // array of objects
     .then(response => response.json())
@@ -66,7 +66,8 @@ fetch("https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/kings.jso
         document.body.appendChild(resultsDiv);
 
         searchButton.addEventListener("click", () => {
-            function printKing(king) {
+            
+            function stringifyKing(king) {
                 return `Name: ${king.nm}\nCountry: ${king.cty}\nHouse: ${king.hse}\nYears: ${king.yrs}`;
             }
 
@@ -78,17 +79,16 @@ fetch("https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/kings.jso
             for (let king of data) {
                 for (let key in king) {
                     if (king[key].toLowerCase().includes(searchText)) {
-                        // pretty print king
                         resultsCount++;
 
-                        let results = document.createElement("p");
-                        results.innerText = printKing(king);//JSON.stringify(king);
-                        resultsDiv.appendChild(results);
+                        let result = document.createElement("p");
+                        result.innerText = stringifyKing(king);
+                        resultsDiv.appendChild(result);
 
+                        // do not process one king multiple times
                         break;
                     }
-                    // for year - split and check [0] and [2]
-                    // add # of results counter
+                    // for year - split and check between [0] and [2]
                 }
             }
             let numOfResults = document.createElement("p");
