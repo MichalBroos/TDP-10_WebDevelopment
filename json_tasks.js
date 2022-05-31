@@ -1,4 +1,5 @@
 "use strict"
+// JSON 1
 fetch("https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/example.json")
     .then(response => response.json())
     .then(data => {
@@ -15,17 +16,28 @@ fetch("https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/example.j
         p2.innerText = `Here are our current members:`;
         document.body.appendChild(p2);
 
-        let ul = document.createElement("ul");
-        ul.id = "members";
-        document.body.appendChild(ul);
+        let membersList = document.createElement("ul");
+        membersList.id = "members";
+        document.body.appendChild(membersList);
         for (let member of data.members) {
-            let li = document.createElement("li");
-            li.innerText = member.name;
-            document.getElementById("members").appendChild(li);
+            let memberLi = document.createElement("li");
+            memberLi.innerText = member.name;
+            memberLi.id = `${member.name}`.replaceAll(" ", "");
+            document.getElementById("members").appendChild(memberLi);
 
-            for (let property in member) {
-                console.log(member[property]);
+            // for (let property in member) {
+            //     console.log(member[property]);
+            // }
+
+            function createLi(text) {
+                const li = document.createElement("li");
+                li.innerText = text;
+                return li;
             }
-            
+            let memberInfo = document.createElement("ul");
+            memberLi.appendChild(memberInfo);
+            memberInfo.appendChild(createLi(`Age: ${member.age}`));
+            memberInfo.appendChild(createLi(`Age: ${member.age}`));
+
         }
     });
