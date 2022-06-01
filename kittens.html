@@ -10,6 +10,27 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
+    <h1>Kittens</h1>
+    <form id="kittenForm">
+        <fieldset>
+            <legend>Add a new kitten</legend>
+
+            <label for="kittenName">Name:</label>
+            <input type="text" name="kittenName" id="kittenName">
+            <br>
+            <label for="kittenAge">Age:</label>
+            <input type="number" name="kittenAge" id="kittenAge">
+            <br>
+            <label for="kittenBreed">Breed:</label>
+            <input type="text" name="kittenBreed" id="kittenBreed">
+            <br>
+            <label for="kittenCuteness">Cuteness:</label>
+            <input type="number" name="kittenCuteness" id="kittenCuteness">
+            <br>
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+        </fieldset>
+    </form>
     <script type="text/javascript" src="kittens.js"></script>
 </body>
 </html>
