@@ -77,40 +77,46 @@ fetch("https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/kings.jso
 
             let searchText = searchBox.value.toLowerCase();
             for (let king of data) {
+                let matchingKing = false;
                 for (let key in king) {
                     if (key !== "yrs") {
                         if (king[key].toLowerCase().includes(searchText)) {
-                            resultsCount++;
-
-                            let result = document.createElement("p");
-                            result.innerText = stringifyKing(king);
-                            resultsDiv.appendChild(result);
-
-                            // do not process one king multiple times
-                            break;
+                            matchingKing = true;
                         }
                     } else {
                         // searching by years
+                        const yearSearched = Number.parseInt(searchText);
                         const yearsSplit = king[key].split("-");
                         const year1 = Number.parseInt(yearsSplit[0]);
                         let year2;
-                        if (yearsSplit.length === 1) {
-                            year2 = null;
-                        } else if (yearsSplit[1] === "") {
-                            year2 = new Date().getFullYear()
+
+                        if (yearsSplit.length === 1 && yearSearched === year1) { // short circuit evaluation
+                            // equals search for a single year reign
+                            matchingKing = true;
                         } else {
-                            year2 = Number.parseInt(yearsSplit[1]);
-                        }
-                        console.log(yearsSplit);
-                        // interval search when year2 exists, equals search if a single year reign
-                        const yearSearched = Number.parseInt(searchText);
-                        if (year2) {
-                            if (yearSearched >= year1 && yearSearched <= year2) {
-                                // matching king -> log
+                             // interval search when year2 exists
+                            if (yearsSplit[1] === "") {
+                                // current monarch
+                                year2 = new Date().getFullYear()
+                            } else {
+                                year2 = Number.parseInt(yearsSplit[1]);
                             }
-                        } else if (yearSearched === year1) {
-                            // matching king -> log
+
+                            if (yearSearched >= year1 && yearSearched <= year2) {
+                                matchingKing = true;
+                            }
                         }
+                    }
+
+                    if (matchingKing) {
+                        resultsCount++;
+
+                        let result = document.createElement("p");
+                        result.innerText = stringifyKing(king);
+                        resultsDiv.appendChild(result);
+
+                        // do not process a matching king multiple times, move to the next king
+                        break;
                     }
                 }
             }
