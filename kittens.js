@@ -30,10 +30,21 @@ let viewAllKittens = () => {
             kittenView.innerHTML = kittenView.getElementsByTagName("legend")[0].outerHTML;
             for (let kitten of response.data) {
                 console.log(kitten.id);
-                let kittenP = document.createElement("p");
-                kittenP.innerText = `Name: ${kitten.name}\nAge:${kitten.age}
-                                     Breed:${kitten.breed}\nCuteness:${kitten.cuteness}`;
-                kittenView.prepend(kittenP);
+                // let kittenP = document.createElement("p");
+                // kittenP.innerText = `Name: ${kitten.name}\nAge:${kitten.age}
+                //                      Breed:${kitten.breed}\nCuteness:${kitten.cuteness}`;
+                // kittenView.prepend(kittenP);
+
+                const kittenCheckbox = document.createElement("input");
+                kittenCheckbox.type = "checkbox";
+                kittenCheckbox.id = `kitten${kitten.id}`;
+                kittenCheckbox.name = kittenCheckbox.id;
+                const kittenLabel = document.createElement("label");
+                kittenLabel.for = kittenCheckbox.name;
+                kittenLabel.innerText = `\nName: ${kitten.name}\nAge:${kitten.age}
+                                        Breed:${kitten.breed}\nCuteness:${kitten.cuteness}\n`;
+                kittenView.prepend(kittenLabel);
+                kittenView.prepend(kittenCheckbox);
             }
         })
         .catch(error => console.error(error));
@@ -44,4 +55,6 @@ viewAllKittens();
 /* Notes:
 age < 0 ? 0 : age
 reset using loop and wipe all input children of form - no need button type reset in html does this for you
+
+TODO: add delete button which deletes all kittens with ticked checkboxes
 */
