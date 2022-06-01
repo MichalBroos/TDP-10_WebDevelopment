@@ -93,11 +93,25 @@ fetch("https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/kings.jso
                         // searching by years
                         const yearsSplit = king[key].split("-");
                         const year1 = Number.parseInt(yearsSplit[0]);
-                        const year2 = yearsSplit // continue here
+                        let year2;
+                        if (yearsSplit.length === 1) {
+                            year2 = null;
+                        } else if (yearsSplit[1] === "") {
+                            year2 = new Date().getFullYear()
+                        } else {
+                            year2 = Number.parseInt(yearsSplit[1]);
+                        }
                         console.log(yearsSplit);
-
+                        // interval search when year2 exists, equals search if a single year reign
+                        const yearSearched = Number.parseInt(searchText);
+                        if (year2) {
+                            if (yearSearched >= year1 && yearSearched <= year2) {
+                                // matching king -> log
+                            }
+                        } else if (yearSearched === year1) {
+                            // matching king -> log
+                        }
                     }
-                    // for year - split and check between [0] and [2]
                 }
             }
             let numOfResults = document.createElement("p");
